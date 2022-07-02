@@ -1,28 +1,26 @@
 package com.skypro.springshop.springshop.controller;
 
-import com.skypro.springshop.springshop.repository.ShoppingCartRepository;
+import com.skypro.springshop.springshop.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/store/order")
 public class ShoppingCartController {
-    private ShoppingCartRepository shoppingCartRepository;
+    private ShoppingCartService shoppingCartService;
 
-    public ShoppingCartController(ShoppingCartRepository shoppingCartRepository) {
-        this.shoppingCartRepository = shoppingCartRepository;
+    public ShoppingCartController(ShoppingCartService shoppingCartService) {
+        this.shoppingCartService = shoppingCartService;
     }
 
     @GetMapping("/add")
     public String addItem(@RequestParam int id) {
-        shoppingCartRepository.addItem(id);
+        shoppingCartService.addItem(id);
         return "Товар " + id + " успешно добавлен";
     }
 
     @GetMapping("/get")
     public List getItems() {
-        return shoppingCartRepository.getItems();
+        return shoppingCartService.getItems();
     }
 }
