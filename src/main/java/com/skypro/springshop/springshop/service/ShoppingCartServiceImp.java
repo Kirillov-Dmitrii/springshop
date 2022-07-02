@@ -7,19 +7,21 @@ import java.util.List;
 
 @Service
 public class ShoppingCartServiceImp implements ShoppingCartService {
-    ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
 
     public ShoppingCartServiceImp(ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 
     @Override
-    public void addItem(int id) {
-        shoppingCartRepository.getShoppingCart().add(id);
+    public String addItem(Integer id) {
+        shoppingCartRepository.create(id);
+        return "Товар " + id + " успешно добавлен";
     }
 
     @Override
     public List<Integer> getItems() {
-        return shoppingCartRepository.getShoppingCart();
+        return shoppingCartRepository.reade();
     }
+
 }
