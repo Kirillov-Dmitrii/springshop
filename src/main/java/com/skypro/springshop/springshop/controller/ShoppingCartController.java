@@ -20,7 +20,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/get")
-    public List getItems() {
+    public List<Integer> getItems() {
         return shoppingCartService.getItems();
     }
 }
